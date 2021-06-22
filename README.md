@@ -162,5 +162,105 @@ def pdf_img(request):
 
 <br />
 
+## Create Custom Commands
+
+> Create the new app
+
+```bash
+python manage.py startapp app_customcmd
+```
+
+**Inside the new app directory** create a structure as shown below:
+
+```bash
+< PROJECT ROOT >                          <-- project directory
+ |
+ |-- app_customcmd/                                <-- app directory
+ |    |-- management/
+ |    |	   +-- __init__.py
+ |    |    +-- commands/
+ |    |         +-- __init__.py
+ |    |         +-- cmd_....py  <-- module where all commands are saved
+```
+
+<br />
+
+> Update configuration to enable the new app
+
+```python
+# File content: config/settings.py (partial content)
+...
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'app_forms',
+    'app_pdf',
+    'app_customcmd',                     # <-- NEW
+    'app',
+]
+...
+```
+
+<br />
+
+> Code a new dummy command - new file `app_customcmd/management/commands/cmd_time.py`
+
+```python
+# File content: cmd_time.py
+
+from django.core.management.base import BaseCommand
+from django.utils import timezone
+
+class Command(BaseCommand):
+    help = 'Displays current time'
+
+    def handle(self, *args, **kwargs):
+        time = timezone.now().strftime('%X')
+        self.stdout.write("It's %s" % time)
+```
+
+<br />
+
+> Registered Commands:
+
+- `cmd_time.py` - show current timestamp
+- `cmd_apps`    - list all registered apps
+- `cmd_models`  - list all apps and associated models
+- `cmd_showcfg` - list all CFG keys and values
+
+**Command Usage sample**
+
+```bash
+$ python manage.py cmd_models 
+```
+
+**Sample output**
+
+```bash
+APP -> Administration
+         |- (model) -> <class 'django.contrib.admin.models.LogEntry'>
+ APP -> Authentication and Authorization
+         |- (model) -> <class 'django.contrib.auth.models.Permission'>
+         |- (model) -> <class 'django.contrib.auth.models.Group'>
+         |- (model) -> <class 'django.contrib.auth.models.User'>
+ APP -> Content Types
+         |- (model) -> <class 'django.contrib.contenttypes.models.ContentType'>
+ APP -> Sessions
+         |- (model) -> <class 'django.contrib.sessions.models.Session'>
+ APP -> Messages
+ APP -> Static Files
+ APP -> App_Forms
+ APP -> App_Pdf
+ APP -> App_Customcmd
+ APP -> App
+         |- (model) -> <class 'app.models.Book'>
+```
+
+<br />
+
 --- 
 Learn Django by Coding - Provided and actively supported by AppSeed [App Generator](https://appseed.us)

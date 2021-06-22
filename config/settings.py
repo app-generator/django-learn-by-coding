@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_forms',
     'app_pdf',
+    'app_customcmd',
     'app',
 ]
 
