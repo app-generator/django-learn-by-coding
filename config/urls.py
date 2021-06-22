@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(""    , include("forms.urls")), # Forms app routing
-    path(""    , include("app.urls"))    # App routing sample
+    path(""    , include("app_forms.urls")), # Forms app routing
+    path(""    , include("app_pdf.urls")),   # PDF app routing
+    path(""    , include("app.urls"))        # App routing sample
 ]
