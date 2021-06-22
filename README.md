@@ -6,7 +6,7 @@ Open-source project provided by AppSeed to help beginners accommodate and learn 
 
 <br />
 
-## Create a new Django project
+## Create Django project
 
 > Create a virtual environment
 
@@ -69,7 +69,7 @@ $ # Access the web app in browser: http://127.0.0.1:8000/
 
 <br />
 
-## Return PDF Files 
+## Generate PDF Files 
 
 > Install dependencies
 
