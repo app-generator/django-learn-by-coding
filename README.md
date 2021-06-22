@@ -12,8 +12,8 @@ Open-source project provided by AppSeed to help beginners accommodate and learn 
 
 ```bash 
 $ # Linux-based systems
-$ virtualenv env
-$ source env/bin/activate  
+    $ virtualenv env
+    $ source env/bin/activate  
 ```
 
 For Windows systems, the syntax is different
